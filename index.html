@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The LNMIIT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .color-box {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="font-bold text-green-500 text-3xl text-center mt-5">
+        The LNMIIT Science and Technology Council
+    </h1>
+    <form class="flex flex-col justify-center items-center mt-5" id="form">
+    </form>
+    <div class="flex flex-col justify-center items-center mt-5" id="messageArea">
+    </div>
+    <div class="hidden md:block">
+    <div class="flex flex-col justify-center items-center mt-5 ">
+        <div class="color-box bg-green-500" id="greenBox"></div>
+        <div class="color-box bg-red-500" id="redBox"></div>
+        <div class="color-box bg-pink-500" id="pinkBox"></div>
+        <div class="color-box bg-blue-500" id="blueBox"></div>
+        <div class="color-box bg-cyan-500" id="cyanBox"></div>
+        <div class="color-box bg-yellow-500" id="blackBox"></div>
+        <div class="color-box bg-purple-500" id="purpleBox"></div>
+        <div class="color-box bg-orange-500" id="bBox"></div>
+    </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let socket = io();
+
+        let form = document.getElementById('form');
+        let myname = document.getElementById('myname');
+
+        // Function to change background color
+        function changeBackgroundColor(color) {
+            document.body.style.backgroundColor = color;
+        }
+
+        // Event listener for the 'change background' event
+        socket.on('change background', (color) => {
+            changeBackgroundColor(color);
+        });
+
+        // Add event listeners to color boxes
+        function setHoldColor(color) {
+            let isHolding = false;
+                        const box3 = document.getElementById('redBox');
+
+            box3.addEventListener('mousedown', () => {
+                isHolding = true;
+                changeBackgroundColor(color);
+                socket.emit('change background', 'red');
+            });
+
+            box3.addEventListener('mouseup', () => {
+                isHolding = false;
+                changeBackgroundColor('black');
+                socket.emit('change background', 'black');
+            });
+
+            // Add a mouseout event listener to handle cases where the mouse is released outside the box.
+            box3.addEventListener('mouseout', () => {
+                if (isHolding) {
+                    isHolding = false;
+                    changeBackgroundColor('black');
+                    socket.emit('change background', 'black');
+                }
+            });
+            const box2 = document.getElementById('greenBox');
+
+            box2.addEventListener('mousedown', () => {
+                isHolding = true;
+                changeBackgroundColor(color);
+                socket.emit('change background', '#10ff00');
+            });
+
+            box2.addEventListener('mouseup', () => {
+                isHolding = false;
+                changeBackgroundColor('black');
+                socket.emit('change background', 'black');
+            });
+
+            // Add a mouseout event listener to handle cases where the mouse is released outside the box.
+            box2.addEventListener('mouseout', () => {
+                if (isHolding) {
+                    isHolding = false;
+                    changeBackgroundColor('black');
+                    socket.emit('change background', 'black');
+                }
+            });
+            const box5 = document.getElementById('pinkBox');
+
+            box5.addEventListener('mousedown', () => {
+                isHolding = true;
+                changeBackgroundColor(color);
+                socket.emit('change background', '#ff00b3');
+            });
+
+            box5.addEventListener('mouseup', () => {
+                isHolding = false;
+                changeBackgroundColor('black');
+                socket.emit('change background', 'black');
+            });
+
+            // Add a mouseout event listener to handle cases where the mouse is released outside the box.
+            box5.addEventListener('mouseout', () => {
+                if (isHolding) {
+                    isHolding = false;
+                    changeBackgroundColor('black');
+                    socket.emit('change background', 'black');
+                }
+            });
+            const box = document.getElementById('blackBox');
+
+            box.addEventListener('mousedown', () => {
+                isHolding = true;
+                changeBackgroundColor(color);
+                socket.emit('change background', color);
+            });
+
+            box.addEventListener('mouseup', () => {
+                isHolding = false;
+                changeBackgroundColor('black');
+                socket.emit('change background', 'black');
+            });
+
+            // Add a mouseout event listener to handle cases where the mouse is released outside the box.
+            box.addEventListener('mouseout', () => {
+                if (isHolding) {
+                    isHolding = false;
+                    changeBackgroundColor('black');
+                    socket.emit('change background', 'black');
+                }
+            });
+            const box6 = document.getElementById('blueBox');
+
+box6.addEventListener('mousedown', () => {
+    isHolding = true;
+    changeBackgroundColor(color);
+    socket.emit('change background', 'blue');
+});
+
+box6.addEventListener('mouseup', () => {
+    isHolding = false;
+    changeBackgroundColor('black');
+    socket.emit('change background', 'black');
+});
+
+// Add a mouseout event listener to handle cases where the mouse is released outside the box.
+box6.addEventListener('mouseout', () => {
+    if (isHolding) {
+        isHolding = false;
+        changeBackgroundColor('black');
+        socket.emit('change background', 'black');
+    }
+});
+const box8 = document.getElementById('cyanBox');
+
+box8.addEventListener('mousedown', () => {
+    isHolding = true;
+    changeBackgroundColor(color);
+    socket.emit('change background', 'cyan');
+});
+
+box8.addEventListener('mouseup', () => {
+    isHolding = false;
+    changeBackgroundColor('black');
+    socket.emit('change background', 'black');
+});
+
+// Add a mouseout event listener to handle cases where the mouse is released outside the box.
+box8.addEventListener('mouseout', () => {
+    if (isHolding) {
+        isHolding = false;
+        changeBackgroundColor('black');
+        socket.emit('change background', 'black');
+    }
+});
+const box9 = document.getElementById('purpleBox');
+
+box9.addEventListener('mousedown', () => {
+    isHolding = true;
+    changeBackgroundColor(color);
+    socket.emit('change background', '#bd00ff');
+});
+
+box9.addEventListener('mouseup', () => {
+    isHolding = false;
+    changeBackgroundColor('black');
+    socket.emit('change background', 'black');
+});
+
+// Add a mouseout event listener to handle cases where the mouse is released outside the box.
+box9.addEventListener('mouseout', () => {
+    if (isHolding) {
+        isHolding = false;
+        changeBackgroundColor('black');
+        socket.emit('change background', 'black');
+    }
+});
+const box10 = document.getElementById('bBox');
+
+box10.addEventListener('mousedown', () => {
+    isHolding = true;
+    changeBackgroundColor(color);
+    socket.emit('change background', 'orange');
+});
+
+box10.addEventListener('mouseup', () => {
+    isHolding = false;
+    changeBackgroundColor('black');
+    socket.emit('change background', 'black');
+});
+
+// Add a mouseout event listener to handle cases where the mouse is released outside the box.
+box10.addEventListener('mouseout', () => {
+    if (isHolding) {
+        isHolding = false;
+        changeBackgroundColor('black');
+        socket.emit('change background', 'black');
+    }
+});
+        }
+
+        // Call setHoldColor function for the desired color
+        setHoldColor('yellow');
+    </script>
+</body>
+</html>
